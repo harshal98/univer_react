@@ -14,14 +14,24 @@ export default function Test() {
     DEFAULT_WORKBOOK_DATA
   );
   function InsertData() {
-    const values = [
-      ["Hello", "World!"],
-      ["Hello", "Univer!"],
+    const values: ICellData[][] = [
+      [
+        {
+          v: "B1",
+          s: {
+            bg: {
+              rgb: "yellow", // Background color is red
+            },
+          },
+        },
+        { v: "World!" },
+      ],
+      [{ v: "Hello" }, { v: "Univer!" }],
     ];
 
     const activeWorkbook = WorkBook;
     if (!activeWorkbook) throw new Error("activeWorkbook is not defined");
-    const activeSheet = activeWorkbook.getActiveSheet();
+    const activeSheet = activeWorkbook.getSheetByName("sheet1");
     if (!activeSheet) throw new Error("activeSheet is not defined");
 
     const range = activeSheet.getRange(0, 0, values.length, values[0].length);
@@ -32,6 +42,7 @@ export default function Test() {
      */
     range.setValues(values);
   }
+
   return (
     <>
       <button
