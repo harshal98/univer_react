@@ -15,8 +15,8 @@ export default function Test() {
   );
   function InsertData() {
     const values = [
-      [1, 1],
-      [1, 1],
+      ["Hello", "World!"],
+      ["Hello", "Univer!"],
     ];
 
     const activeWorkbook = WorkBook;
@@ -24,13 +24,13 @@ export default function Test() {
     const activeSheet = activeWorkbook.getActiveSheet();
     if (!activeSheet) throw new Error("activeSheet is not defined");
 
-    const range = activeSheet.getRange(1, 1, 2, 2);
+    const range = activeSheet.getRange(0, 0, values.length, values[0].length);
     if (!range) throw new Error("range is not defined");
 
     /**
-     * @see https://univer.ai/typedoc/@univerjs/facade/classes/FRange#setValue
+     * @see https://univer.ai/typedoc/@univerjs/facade/classes/FRange#setValues
      */
-    range.setValue(values);
+    range.setValues(values);
   }
   return (
     <>
